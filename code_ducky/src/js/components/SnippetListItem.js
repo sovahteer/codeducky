@@ -8,6 +8,9 @@ class SnippetListItem extends Component {
   
   render() {
     return (
+      <li>
+        Data?
+      </li>
     );
   }
 }

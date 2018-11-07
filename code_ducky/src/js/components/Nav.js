@@ -8,6 +8,7 @@ class Nav extends Component {
   
   render() {
     return (
+      <nav className='navBar'></nav>
     );
   }
 }

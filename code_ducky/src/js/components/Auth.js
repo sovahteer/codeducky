@@ -8,6 +8,7 @@ class Auth extends Component {
   
   render() {
     return (
+      <div></div>
     );
   }
 }

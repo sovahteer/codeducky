@@ -8,6 +8,7 @@ class Snippet extends Component {
   
   render() {
     return (
+      <div></div>
     );
   }
 }

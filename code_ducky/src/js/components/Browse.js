@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import SnippetSearch from './SnippetSearch.js';
+import SnippetList from './SnippetList.js';
 
 class Browse extends Component {
   constructor(props){
@@ -8,6 +10,10 @@ class Browse extends Component {
   
   render() {
     return (
+      <>
+        <SnippetSearch handlers={this.props.handlers} data={this.props.data}/>
+        <SnippetList handlers={this.props.handlers} data={this.props.data}/>
+      </>
     );
   }
 }
