@@ -17,7 +17,11 @@ class Content extends Component {
         category: 'Everything'
       },
       snippetList: [
-        'Test item'
+        {// Remove
+          title: 'Test item',
+          author: 'Admin',
+          tags: ['fake', 'test', 'pseudocode']
+        }
       ]
     };
   }

@@ -7,9 +7,12 @@ class SnippetListItem extends Component {
   }
   
   render() {
+    const data = this.props.data
     return (
       <li>
-        Data?
+        <h4>{data.title}</h4>
+        Author: {data.author}<br/>
+        Tags: {data.tags.join(', ')}
       </li>
     );
   }

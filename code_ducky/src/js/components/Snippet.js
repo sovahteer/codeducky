@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Files from './Files.js';
+import Description from './Description.js';
+import Tags from './Tags.js';
 
 class Snippet extends Component {
   constructor(props){
@@ -8,7 +11,11 @@ class Snippet extends Component {
   
   render() {
     return (
-      <div></div>
+      <>
+        <Files/>
+        <Description/>
+        <Tags/>
+      </>
     );
   }
 }

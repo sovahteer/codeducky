@@ -8,6 +8,9 @@ class Code extends Component {
   
   render() {
     return (
+      <pre className='prettyprint'>
+        {this.props.file}
+      </pre>
     );
   }
 }

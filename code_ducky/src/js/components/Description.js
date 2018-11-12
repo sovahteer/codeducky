@@ -8,6 +8,9 @@ class Description extends Component {
   
   render() {
     return (
+      <p>
+        Description and author data.
+      </p>
     );
   }
 }

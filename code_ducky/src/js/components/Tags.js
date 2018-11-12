@@ -8,6 +8,7 @@ class Tags extends Component {
   
   render() {
     return (
+      <div>Tags go here</div>
     );
   }
 }
