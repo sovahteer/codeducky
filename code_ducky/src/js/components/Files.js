@@ -9,10 +9,12 @@ class Files extends Component {
   
   render() {
     const files = this.props.files;
-    const list = Object.keys(files);
+    let list = [];
     let fileList = [];
-    for(let file in files)
-      fileList.push(<li key={file}>{file}</li>);
+    for(let file in files){
+      list.push(file);
+      fileList.push(<li className={file == list[0]? 'selected': ''} key={file}>{file}</li>);
+    }
     return (
       <>
         <div className={list.length <= 1? 'collapsed': ''}>

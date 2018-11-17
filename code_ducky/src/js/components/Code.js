@@ -6,7 +6,7 @@ class Code extends Component {
     
   }
   
-  render() {
+  render() { // TODO: Make sure this calls prettyprint when necessary
     return (
       <pre className='prettyprint'>
         {this.props.file}
