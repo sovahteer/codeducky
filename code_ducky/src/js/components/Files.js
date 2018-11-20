@@ -13,7 +13,7 @@ class Files extends Component {
     let fileList = [];
     for(let file in files){
       list.push(file);
-      fileList.push(<li className={file == list[0]? 'selected': ''} key={file}>{file}</li>);
+      fileList.push(<li className={file === list[0]? 'selected': ''} key={file}>{file}</li>);
     }
     return (
       <>

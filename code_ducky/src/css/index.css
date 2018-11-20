@@ -6,9 +6,31 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+html, body{
+	height: 100vh;
 }
 
 code, pre {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.loginOverlay{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #D0D0D0A0;
+}
+
+#firebaseui_container{
+	background-color: lightgray;
+	position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
