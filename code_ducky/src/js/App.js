@@ -14,15 +14,11 @@ class App extends Component {
     if(!firebase.apps.length)
       firebase.initializeApp(config);
     
-//    const db = firebase.firestore();
-//    
-//    db.settings({ //Disable deprecated features 
-//      timestampsInSnapshots: true
-//    });
-//    
-//    db.collection('snippets').get().then((r) => {
-//      r.forEach((doc) => console.log(doc.data()));
-//    });
+    const db = firebase.firestore();
+    
+    db.settings({ //Disable deprecated features 
+      timestampsInSnapshots: true
+    });
     
     this.uiConfig = { // Firebase Auth settings
       callbacks: {
