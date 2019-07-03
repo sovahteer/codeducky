@@ -15,7 +15,7 @@ class Header extends Component {
           <img alt='Codeducky logo'/>
           <h1>CodeDucky</h1>
         </div>
-        <Auth/>
+        <Auth handlers={this.props.handlers}/>
         <Nav/>
       </div>
     );

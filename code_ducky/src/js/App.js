@@ -22,7 +22,8 @@ class App extends Component {
     
     this.uiConfig = { // Firebase Auth settings
       callbacks: {
-        signInSuccessWithAuthResult: this.signInSuccess,
+//        signInSuccessWithAuthResult: this.signInSuccess,
+        signInSuccessWithAuthResult: ()=> false,
         signInFailure: this.signInFailure
       },
       signInFlow: 'redirect', // Use redirect for oAuth
@@ -33,18 +34,18 @@ class App extends Component {
       privacyPolicyUrl: this.displayPrivacyPolicy
     };
     
-    this.state = {
-      signedIn: false
-    }
+    this.auth = firebase.auth();
+    this.auth.onAuthStateChanged(this.handleAuthStateChanged);
+    
+    this.state = {signedIn: false}
   }
   
-  signInSuccess = (authResult)=>{
-    console.log('Signed in:', authResult);
-    this.setState({
-      signedIn: true
-    });
-    return false;
-  }
+//  signInSuccess = (authResult)=>{
+//    this.setState({
+//      signedIn: true
+//    });
+//    return false;
+//  }
   
   signInFailure = (error)=>{
     //return handleUIError(error);
@@ -59,13 +60,28 @@ class App extends Component {
     window.alert('Implement Privacy policy display here');
   }
   
+  handleAuthStateChanged = (user)=>{
+    console.log('App.handleAuthStateChanged(user)', user);
+    this.setState({
+      signedIn: !!user
+    });
+  }
+  
+//  handleSignOut = ()=>{
+//    this.auth.signOut();
+//  }
+  
   render(){
     let login;
+    
+    const handlers = {
+      signOut: this.handleSignOut
+    };
     
     if(this.state.signedIn === false){
       login = (
         <div className='loginOverlay'>
-          <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
+          <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={this.auth}/>
         </div>
       );
     }
@@ -73,7 +89,7 @@ class App extends Component {
     return (
       <>
         {login}
-        <Header/>
+        <Header handlers={handlers}/>
         <Content/>
       </>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
 import Browse from './Browse.js';
 import Snippet from './Snippet.js';
 
@@ -18,30 +19,34 @@ class Content extends Component {
         terms: '',
         category: 'Everything'
       },
-      snippetList: [
-        {// Remove
-          title: 'Test item',
-          author: 'Admin',
-          tags: ['fake', 'test', 'pseudocode']
-        }
-      ]
+      snippetList: []
     };
-    
-    this.db = firebase.firestore();
-    
-    this.db.collection('snippets').get().then((r) => {
-      let snippets = [];
-      r.forEach((doc) => {
-        const data = doc.data();
-        console.log(data);
-        snippets.push({
-          title: data.title,
-          author: data.owner,
-          tags: data.tags // TODO: Make sure this does not need copying.
+        
+    firebase.auth().onAuthStateChanged(this.handleAuthStateChanged);
+  }
+  
+  handleAuthStateChanged = (user)=>{
+    console.log('Content.handleAuthStateChanged(user)', user);
+    if(user){
+      const db = firebase.firestore();
+      
+      db.collection('snippets').get().then((r) => {
+        let snippets = [];
+        r.forEach((doc) => {
+          const data = doc.data();
+          console.log(data);
+          snippets.push({
+            title: data.title,
+            author: data.owner,
+            tags: data.tags // TODO: Make sure this does not need copying.
+          });
         });
+        this.setState({snippetList: snippets});
       });
-      this.setState({snippetList: snippets});
-    });
+    }
+    else{
+      this.setState({snippetList: []});
+    }
   }
   
   handleSearch = (event) => {

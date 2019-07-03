@@ -26,7 +26,7 @@ class SnippetSearch extends Component {
           <option>Tags</option>
           <option>Owner</option>
           <option>Tags and owner</option>
-          <option>Name and descrition</option>
+          <option>Name and description</option>
         </select>
       </div>
     );
