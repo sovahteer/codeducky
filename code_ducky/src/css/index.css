@@ -1,15 +1,14 @@
 body {
-  margin: 0;
-  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
 }
 
-html, body{
+html, body, #root{
+	margin: 0;
+  padding: 0;
 	height: 100vh;
 }
 
@@ -18,7 +17,11 @@ code, pre {
     monospace;
 }
 
-.loginOverlay{
+#root{
+	position: relative;
+}
+
+#loginOverlay{
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -28,9 +31,75 @@ code, pre {
 }
 
 #firebaseui_container{
-	background-color: lightgray;
-	position: absolute;
+  background-color: lightgray;
+  position: absolute;
   top: 33%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 10px;
+}
+
+#header{
+	position: relative;
+	width: 100%;
+	height: 95px;
+}
+
+#logo{
+	display: inline-block;
+	padding-left: 10px;
+}
+
+#title{
+	display: inline-block;
+	padding-left: 10px;
+}
+
+#auth{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+#avatar{
+	dispaly: inline-block;
+	width: 75px;
+	height: 75px;
+	border-radius: 10px;
+}
+
+#userInfo{
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+#navBar{
+	display: none;
+}
+
+.snippetListItem{
+	cursor: pointer;
+}
+
+.snippetListItem:hover,
+.snippetListItem:active{
+	background-color: lightgrey;
+}
+
+.snippetListItem *{
+	pointer-events: none;
+}
+
+#fileList{
+	float: left;
+}
+
+#fileView{
+	float: left;
+}
+
+#description{
+	clear: left;
 }

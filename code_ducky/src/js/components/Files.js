@@ -9,24 +9,31 @@ class Files extends Component {
   
   render() {
     const files = this.props.files;
-    let list = [];
+    const fileNames = Object.keys(files);
     let fileList = [];
-    for(let file in files){
-      list.push(file);
-      fileList.push(<li className={file === list[0]? 'selected': ''} key={file}>{file}</li>);
+    let output = (<p>No files found.</p>);
+    console.log('Files.render(): files:', files, 'fileNames:', fileNames);
+    if(fileNames.length > 0){
+      for(let file in fileNames){
+        const name = fileNames[file];
+        fileList.push(<li className={file === 0? 'selected': ''} key={name}>{name}</li>);
+      }
+      return (
+        <>
+          <div id='fileList' className={fileNames.length <= 1? ' collapsed': ''}>
+            <ul>
+              {fileList}
+            </ul>
+          </div>
+          <div id='fileView'>
+            <Code file={files[fileNames[0]]} fileName={fileNames[0]}/>
+          </div>
+        </>
+      );
     }
-    return (
-      <>
-        <div className={list.length <= 1? 'collapsed': ''}>
-          <ul>
-            {fileList}
-          </ul>
-        </div>
-        <div>
-          <Code file={files[list[0]]}/>
-        </div>
-      </>
-    );
+    else{
+      return (<div>Loading files</div>);
+    }
   }
 }
 

@@ -8,7 +8,7 @@ class SnippetSearch extends Component {
   
   render() {
     return (
-      <div>
+      <div id='snippetSearch'>
         <label htmlFor='terms'>Search for</label>
         <input
           type='text'

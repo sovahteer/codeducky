@@ -16,7 +16,7 @@ class SnippetList extends Component {
       );
     }
     return (
-      <ul>
+      <ul id='snippetList'>
         {list}
       </ul>
     );

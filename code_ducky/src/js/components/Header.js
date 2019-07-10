@@ -10,12 +10,12 @@ class Header extends Component {
   
   render() {
     return (
-      <div>
+      <div id='header'>
         <div>
-          <img alt='Codeducky logo'/>
-          <h1>CodeDucky</h1>
+          <img id='logo' alt='Codeducky logo'/>
+          <h1 id='title'>CodeDucky</h1>
         </div>
-        <Auth handlers={this.props.handlers}/>
+        <Auth/>
         <Nav/>
       </div>
     );

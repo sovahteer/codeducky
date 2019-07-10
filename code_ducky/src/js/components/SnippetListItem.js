@@ -9,7 +9,7 @@ class SnippetListItem extends Component {
   render() {
     const data = this.props.data
     return (
-      <li>
+      <li className='snippetListItem' onClick={this.props.handlers.snippetItemClick} id={data.id}>
         <h4>{data.title}</h4>
         Author: {data.author}<br/>
         Tags: {data.tags.join(', ')}

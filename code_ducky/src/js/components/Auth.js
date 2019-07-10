@@ -9,12 +9,11 @@ class Auth extends Component {
     this.state = {user: null};
     
     this.auth = firebase.auth();
-    this.auth.onAuthStateChanged(this.handleAuthStateChanged);
   }
   
   handleAuthStateChanged = (user)=>{
     let state;
-    console.log('Auth.handleAuthStateChanged(user)', user);
+//    console.log('Auth.handleAuthStateChanged(user)', user);
     if(user){
       state = {
         user:{
@@ -30,8 +29,16 @@ class Auth extends Component {
   }
   
   handleSignOut = ()=>{
-    console.log('Auth.handleSignOut()');
+//    console.log('Auth.handleSignOut()');
     this.auth.signOut();
+  }
+  
+  componentDidMount(){
+    this.unregisterOnAuthStateChanged = this.auth.onAuthStateChanged(this.handleAuthStateChanged);
+  }
+  
+  componentWillUnmount(){
+    this.unregisterOnAuthStateChanged();
   }
   
   render() {
@@ -41,17 +48,17 @@ class Auth extends Component {
     if(user){
       if(user.photoURL)
         photo = (
-          <img src={user.photoURL} alt="User pic"/>
+          <img id='avatar' src={user.photoURL} alt="User pic"/>
         );
       userInfo = (
-        <div>
+        <div id='userInfo'>
           {user.displayName}<br/>
-          <button onClick={this.handleSignOut}>Sign out</button>
+          <button id='signOut' onClick={this.handleSignOut}>Sign out</button>
         </div>
       );
     }
     return (
-      <div>
+      <div id='auth'>
         {photo}
         {userInfo}
       </div>

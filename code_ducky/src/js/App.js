@@ -35,17 +35,9 @@ class App extends Component {
     };
     
     this.auth = firebase.auth();
-    this.auth.onAuthStateChanged(this.handleAuthStateChanged);
     
     this.state = {signedIn: false}
   }
-  
-//  signInSuccess = (authResult)=>{
-//    this.setState({
-//      signedIn: true
-//    });
-//    return false;
-//  }
   
   signInFailure = (error)=>{
     //return handleUIError(error);
@@ -61,26 +53,26 @@ class App extends Component {
   }
   
   handleAuthStateChanged = (user)=>{
-    console.log('App.handleAuthStateChanged(user)', user);
+//    console.log('App.handleAuthStateChanged(user)', user);
     this.setState({
       signedIn: !!user
     });
   }
   
-//  handleSignOut = ()=>{
-//    this.auth.signOut();
-//  }
+  componentDidMount(){
+    this.unregisterOnAuthStateChanged = this.auth.onAuthStateChanged(this.handleAuthStateChanged);
+  }
+  
+  componentWillUnmount(){
+    this.unregisterOnAuthStateChanged();
+  }
   
   render(){
     let login;
     
-    const handlers = {
-      signOut: this.handleSignOut
-    };
-    
     if(this.state.signedIn === false){
       login = (
-        <div className='loginOverlay'>
+        <div id='loginOverlay'>
           <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={this.auth}/>
         </div>
       );
@@ -89,7 +81,7 @@ class App extends Component {
     return (
       <>
         {login}
-        <Header handlers={handlers}/>
+        <Header/>
         <Content/>
       </>
     );
